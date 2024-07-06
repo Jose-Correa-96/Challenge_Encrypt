@@ -1,0 +1,423 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Definición de variables CSS */
+:root {
+  --color-primario: #f3f5fc; /* Color de fondo principal */
+  --color-secundario: #0a3871; /* Color secundario */
+  --fuente-exo: "Exo 2", sans-serif; /* Fuente principal */
+}
+
+/* Estilos globales para todos los elementos */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor principal de la aplicación */
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: var(--color-primario);
+}
+
+/*Titulo y sus caracteristicas*/
+.titulo_Header{
+  position: absolute;
+  width: 100%;
+  height: 10%;
+  left: -18%;
+  top: 5%;
+  padding: 20px;
+  text-align: center;
+  font-family: var(--fuente-exo);
+  font-style: oblique ;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 150%;
+  text-align: center;
+  color: var(--color-secundario);
+}
+
+/* Área de texto para ingresar el mensaje */
+.texto {
+  position: absolute;
+  width: 40%;
+  height: 60%;
+  left: 12%;
+  top: 15%;
+  filter: drop-shadow(4px 4px 8px #999999);
+  font-family: var(--fuente-exo);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 200% ;
+  background-color: var(--color-primario);
+  border-radius: 15px;
+  transition: border 0.3s;
+}
+
+/* Placeholder del área de texto */
+.texto::placeholder {
+  color: var(--color-secundario);
+}
+
+/* Estilos del área de texto cuando está en foco o activo */
+.texto:focus,
+.texto:active {
+  border: 5px solid var(--color-primario);
+  outline: none;
+}
+
+/* Estilo de error para el área de texto */
+.texto.error {
+  border: 5px solid red;
+}
+
+/* Contenedor para los términos */
+.terminos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
+  position: absolute;
+  width: 80%;
+  left: 12%;
+  top: 80%;
+}
+
+/* Estilos para el texto de términos */
+.terminos p {
+  font-family: var(--fuente-exo);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 150%;
+  color: #495057;
+  opacity: 0.8;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+/* Contenedor para los botones */
+.botones {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 1% 0;
+  position: absolute;
+  width: 80%;
+  left: 12%;
+  top: 82%;
+}
+
+/* Botón de encriptar */
+.btn-encriptar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2%;
+  gap: 8px;
+  width: 25%;
+  background-color: var(--color-secundario);
+  border-radius: 24px;
+  font-family: var(--fuente-exo);
+  font-size: 28px;
+  line-height: 19px;
+  text-align: center;
+  color: #fff;
+}
+
+/* Icono del botón de encriptar */
+.icono-encriptar {
+  width: 25px;
+  height: 25px;
+  margin-right: 8px;
+}
+
+/* Botón de desencriptar */
+.btn-desencriptar {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2%;
+  gap: 8px;
+  width: 25%;
+  background: #d8dfe8;
+  border: 1px solid var(--color-secundario);
+  border-radius: 24px;
+  font-family: var(--fuente-exo);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 19px;
+  text-align: center;
+  color: var(--color-secundario);
+}
+
+/* Estilos para los botones cuando se hace hover */
+.btn-desencriptar:hover,
+.btn-encriptar:hover {
+  margin: 0.3%;
+  width: 24.5%;
+  padding: 1.8%;
+}
+
+/* Contenedor para el resultado de la encriptación/desencriptación */
+.encriptado {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 30%;
+  height: 90%;
+  left: 60%;
+  top: 5%;
+  background: #fff;
+  box-shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
+  border-radius: 32px;
+  filter: drop-shadow(4px 4px 8px #999999);
+}
+
+/* Contenedor para el mensaje encriptado/desencriptado */
+.mensaje-encriptado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1%;
+  gap: 16px;
+  position: absolute;
+  width: 100%;
+  top: 65%;
+  text-align: center;
+}
+
+/* Estilos para el título del mensaje */
+.mensaje-encriptado h2 {
+  width: 60%;
+  font-family: var(--fuente-exo);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 120%;
+  text-align: center;
+  color: #343a40;
+}
+
+/* Estilos para el párrafo del mensaje */
+.mensaje-encriptado p {
+  width: 80%;
+  font-family: var(--fuente-exo);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  color: #495057;
+}
+
+/* Área de texto para mostrar el resultado */
+.mensaje-encriptado textarea {
+  width: 80%;
+  height: 100px;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid var(--color-secundario);
+  border-radius: 8px;
+  font-family: var(--fuente-exo);
+  font-size: 16px;
+  color: #495057;
+  resize: none;
+  background-color: #f8f9fa;
+}
+
+/* Botón para copiar el resultado */
+.mensaje-encriptado button {
+  padding: 10px 20px;
+  background-color: var(--color-secundario);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--fuente-exo);
+  font-size: 16px;
+}
+
+/* Estilos para el botón de copiar cuando se hace hover */
+.mensaje-encriptado button:hover {
+  background-color: #084298;
+}
+
+/* Imagen en el contenedor de encriptado */
+.encriptado img {
+  position: absolute;
+  width: 80%;
+  height: 50%;
+  top: 15%;
+  filter: drop-shadow(4px 4px 8px #999999);
+}
+
+/* Diseño responsivo para pantallas más pequeñas */
+@media (max-width: 57.5em) {
+  .container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .encriptar {
+    width: 100%;
+  }
+
+  .texto {
+    width: 80%;
+    height: 60%;
+    left: 10%;
+    top: 5%;
+  }
+
+  .terminos {
+    width: 80%;
+    left: 10%;
+    top: 67%;
+  }
+
+  .terminos p {
+    font-size: 16px;
+  }
+
+  .botones {
+    width: 80%;
+    left: 10%;
+    top: 70%;
+  }
+
+  .btn-encriptar,
+  .btn-desencriptar {
+    width: 48%;
+    border-radius: 16px;
+  }
+
+  .btn-encriptar:hover,
+  .btn-desencriptar:hover {
+    margin: 0.3%;
+    width: 47.5%;
+    padding: 1.8%;
+  }
+
+  .encriptado {
+    width: 80%;
+    height: 15%;
+    left: 10%;
+    top: 80%;
+  }
+
+  .mensaje-encriptado {
+    width: 100%;
+    top: 5%;
+  }
+
+  .encriptado img {
+    top: 0;
+    display: none;
+    visibility: hidden;
+  }
+}
+
+.header-image {
+  width: 100px; /* Ajusta el tamaño de la imagen según sea necesario */
+  height: auto; /* Para mantener la proporción */
+  animation: spin 10s linear infinite; /* Animación de rotación continua */
+  border-radius: 50%; /* Forma ovalada */
+  overflow: hidden; /* Para asegurar que la imagen siga la forma ovalada */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Estilos para enlaces clicables */
+a, a:visited {
+  text-decoration: none;
+}
+
+/* Estilos para enlaces en el contenido */
+content a, content a:visited {
+  text-decoration: none;
+  color: black;
+  font-family: Fruktur;
+  font-size: 24px;
+}
+
+content a p:hover{
+  background-color: yellow;
+}
+
+/* Ajustes para el footer */
+footer {
+  width: 100%;
+  background-color: #efefef;
+  text-align: center;
+  padding: 0.5rem 0;
+  position: relative; /* Ajuste para no tapar otros elementos */
+  clear: both; /* Asegura que el footer se sitúe debajo de otros elementos flotantes */
+}
+
+/* Texto del footer */
+footer div p {
+  font-family: "Rubik One", sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Efectos de texto del footer */
+footer div p span {
+  transition: background-color 1500ms ease, color 1500ms ease;
+  background-color: black;
+  color: white;
+}
+
+footer div p span:hover {
+  background-color: white;
+  color: black;
+}
+
+/* Enlaces de imagen del footer */
+footer a.github,
+footer a.codepen {
+  transition: color 500ms ease;
+  font-size: 3em;
+  color: rgb(13, 38, 54);
+  padding: 10px;
+  display: inline-block;
+}
+
+footer a.codepen {
+  color: black;
+}
+
+/* Efectos de hover en los enlaces de imagen */
+footer a.github:hover,
+footer a.codepen:hover {
+  color: darkgray;
+}
+
+/* Footer responsivo */
+footer.mobile {
+  display: none;
+}
+
+@media screen and (max-width: 400px) {
+  footer.pc {
+    display: none;
+  }
+  footer.mobile {
+    display: block;
+  }
+  footer.mobile div p {
+    font-size: 15px;
+  }
+}
