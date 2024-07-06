@@ -25,6 +25,9 @@ Las "llaves" de encriptación que utilizaremos son las siguientes:
 
 Por ejemplo:
 ``` "gato" => "gaitober" ``` | ``` "gaitober" => "gato" ``` <br><br>
+## Prototipo web
+
+![Prototipo web](img/web.png){.center}
 
 
 
