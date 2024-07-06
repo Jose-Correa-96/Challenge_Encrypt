@@ -468,6 +468,7 @@ footer.mobile {
   display: none;
 }
 
+
 @media screen and (max-width: 400px) {
   footer.pc {
     display: none;
