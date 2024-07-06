@@ -1,4 +1,8 @@
 # Encriptador-de-texto
+![HTML](https://img.shields.io/badge/-HTML-333333?style=flat&logo=html5)
+![CSS](https://img.shields.io/badge/-CSS-1572B6?style=flat&logo=css3)
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+
 #Challengealura
 Encriptador de texto encripta vocales a e i o u 
 
@@ -21,3 +25,6 @@ Las "llaves" de encriptación que utilizaremos son las siguientes:
 
 Por ejemplo:
 ``` "gato" => "gaitober" ``` | ``` "gaitober" => "gato" ``` <br><br>
+
+
+
