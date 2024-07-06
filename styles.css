@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
 
+html {
+  zoom: 100%;
+}
+
 /* Definición de variables CSS */
 :root {
   --color-primario: #f3f5fc; /* Color de fondo principal */
@@ -28,8 +32,6 @@
   height: 10%;
   left: -18%;
   top: 5%;
-  padding: 20px;
-  text-align: center;
   font-family: var(--fuente-exo);
   font-style: oblique ;
   font-weight: 400;
@@ -163,7 +165,7 @@
 .btn-encriptar:hover {
   margin: 0.3%;
   width: 24.5%;
-  padding: 1.8%;
+  padding: 2.0%;
 }
 
 /* Contenedor para el resultado de la encriptación/desencriptación */
@@ -196,7 +198,7 @@
 }
 
 /* Estilos para el título del mensaje */
-.mensaje-encriptado h2 {
+.mensaje-encriptado h3 {
   width: 60%;
   font-family: var(--fuente-exo);
   font-style: normal;
@@ -214,54 +216,66 @@
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 150%;
+  line-height: 100%;
   text-align: center;
   color: #495057;
 }
 
-/* Área de texto para mostrar el resultado */
+/* Estilos para el área de texto del resultado */
 .mensaje-encriptado textarea {
-  width: 80%;
-  height: 100px;
-  margin: 10px 0;
+  width: 100%;
+  max-width: 400px; /* Ajusta el ancho máximo del textarea según tus necesidades */
+  height: 50px; /* Ajusta la altura según sea necesario */
+  margin-top: 10px; /* Espacio superior */
   padding: 10px;
-  border: 1px solid var(--color-secundario);
+  border: 1px solid #0a3871; /* Color del borde */
   border-radius: 8px;
-  font-family: var(--fuente-exo);
+  font-family: var(--fuente-exo); /* Fuente */
   font-size: 16px;
   color: #495057;
   resize: none;
   background-color: #f8f9fa;
 }
 
-/* Botón para copiar el resultado */
+/* Estilos para el botón de copiar */
 .mensaje-encriptado button {
   padding: 10px 20px;
-  background-color: var(--color-secundario);
-  color: #fff;
+  background-color: #0a3871; /* Color de fondo del botón */
+  color: #fff; /* Color del texto del botón */
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-family: var(--fuente-exo);
+  font-family: var(--fuente-exo); /* Fuente */
   font-size: 16px;
 }
 
+
 /* Estilos para el botón de copiar cuando se hace hover */
 .mensaje-encriptado button:hover {
-  background-color: #084298;
+  background-color: #084298; /* Color de fondo del botón al hacer hover */
 }
+
+
 
 /* Imagen en el contenedor de encriptado */
 .encriptado img {
   position: absolute;
-  width: 80%;
-  height: 50%;
+  width: 40%;
+  height: auto;
   top: 15%;
   filter: drop-shadow(4px 4px 8px #999999);
 }
 
+
+
 /* Diseño responsivo para pantallas más pequeñas */
-@media (max-width: 57.5em) {
+@media (max-width: 768px) {
+  .titulo_Header {
+    font-size: 24px;
+    line-height: 120%;
+    margin-top: 20px;
+  }
+
   .container {
     display: flex;
     flex-direction: row;
@@ -273,13 +287,14 @@
 
   .texto {
     width: 80%;
-    height: 60%;
-    left: 10%;
-    top: 5%;
+    max-width: none; /* Ancho máximo del área de texto */
+    height: 200px; /* Ajusta la altura según sea necesario */
+    font-size: 1.5rem; /* Tamaño de la fuente */
+    margin-top: 1rem; /* Espaciado superior */
   }
 
   .terminos {
-    width: 80%;
+    width: 90%;
     left: 10%;
     top: 67%;
   }
@@ -289,17 +304,29 @@
   }
 
   .botones {
-    width: 80%;
-    left: 10%;
-    top: 70%;
+    width: 90%;
+    max-width: 600px; /* Ancho máximo para los botones */
+    margin-top: 1rem; /* Espaciado superior */
   }
-
-  .btn-encriptar,
-  .btn-desencriptar {
-    width: 48%;
-    border-radius: 16px;
-  }
-
+  
+  /* Estilos para los botones */
+.btn-encriptar,
+.btn-desencriptar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px; /* Ajuste de relleno */
+  width: 50%; /* Ancho inicial de los botones */
+  background-color: var(--color-secundario); /* Color de fondo */
+  border: none;
+  border-radius: 24px;
+  font-family: var(--fuente-exo); /* Fuente */
+  font-size: 1rem; /* Tamaño de la fuente */
+  color: #fff; /* Color del texto */
+  cursor: pointer;
+  transition: all 0.3s; /* Transición para suavizar el cambio */
+}
+  
   .btn-encriptar:hover,
   .btn-desencriptar:hover {
     margin: 0.3%;
@@ -308,21 +335,52 @@
   }
 
   .encriptado {
-    width: 80%;
-    height: 15%;
-    left: 10%;
-    top: 80%;
-  }
-
-  .mensaje-encriptado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
     width: 100%;
-    top: 5%;
+    max-width: 600px; /* Ancho máximo ajustado según tus necesidades */
+    height: auto; /* Ajusta la altura según el contenido */
+    margin-top: 2rem; /* Espaciado superior */
+    background: #fff;
+    box-shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
+    border-radius: 32px;
+    overflow: hidden; /* Evita que el contenido se salga de los bordes */
+    filter: drop-shadow(4px 4px 8px #999999);
   }
+  
+  /* Estilos para el mensaje encriptado dentro de encriptado */
+.mensaje-encriptado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  gap: 1rem;
+  text-align: center;
+}
+  
+  /* Estilos para el título del mensaje */
+.mensaje-encriptado h2 {
+  font-size: 1.5rem; /* Tamaño del título */
+  font-weight: 700;
+  color: #343a40;
+}
 
+  
+.mensaje-encriptado p {
+  font-size: 1rem; /* Tamaño del texto */
+  color: #495057;
+}
+  
   .encriptado img {
-    top: 0;
-    display: none;
-    visibility: hidden;
+    width: 100%;
+    max-width: 800px; /* Ajusta el ancho máximo de la imagen según tus necesidades */
+    height: auto; /* Para mantener la proporción */
+    margin-top: 15%; /* Ajusta el margen superior según sea necesario */
+    filter: drop-shadow(4px 4px 8px #999999);
   }
 }
 
@@ -421,3 +479,25 @@ footer.mobile {
     font-size: 15px;
   }
 }
+
+@media (max-width: 768px) {
+  .texto {
+    width: 90%; /* Ajuste para pantallas más pequeñas */
+    font-size: 1.2rem; /* Reducción del tamaño de fuente */
+  }
+}
+
+@media (max-width: 768px) {
+  .encriptado {
+    width: 90%; /* Ajuste para pantallas más pequeñas */
+  }
+}
+
+@media (max-width: 768px) {
+  .btn-encriptar,
+  .btn-desencriptar {
+    width: 100%; /* Ancho completo para pantallas pequeñas */
+    margin-bottom: 1rem; /* Espacio entre botones */
+  }
+}
+
