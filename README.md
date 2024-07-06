@@ -27,7 +27,7 @@ Por ejemplo:
 ``` "gato" => "gaitober" ``` | ``` "gaitober" => "gato" ``` <br><br>
 ## Prototipo web
 
-![Prototipo web](img/web.png){.center}
+![Prototipo web](img/web.png)
 
 
 
