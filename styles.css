@@ -1,504 +1,281 @@
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-html {
-  zoom: 100%;
-}
-
-/* Definición de variables CSS */
 :root {
-  --color-primario: #f3f5fc; /* Color de fondo principal */
-  --color-secundario: #0a3871; /* Color secundario */
-  --fuente-exo: "Exo 2", sans-serif; /* Fuente principal */
+    --primary-color: #0a3871;
+    --secondary-color: #f3f5fc;
+    --text-color: #495057;
+    --background-color: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos globales para todos los elementos */
+/* Dark theme variables */
+.dark-theme {
+    --primary-color: #7aa7c7;
+    --secondary-color: #1f2937;
+    --text-color: #e5e7eb;
+    --background-color: #111827;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Contenedor principal de la aplicación */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
 .container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  background: var(--color-primario);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
 }
 
-/*Titulo y sus caracteristicas*/
-.titulo_Header{
-  position: absolute;
-  width: 100%;
-  height: 10%;
-  left: -18%;
-  top: 5%;
-  font-family: var(--fuente-exo);
-  font-style: oblique ;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 150%;
-  text-align: center;
-  color: var(--color-secundario);
-}
-
-/* Área de texto para ingresar el mensaje */
-.texto {
-  position: absolute;
-  width: 40%;
-  height: 60%;
-  left: 12%;
-  top: 15%;
-  filter: drop-shadow(4px 4px 8px #999999);
-  font-family: var(--fuente-exo);
-  font-style: normal;
-  font-weight: 500;
-  font-size: 32px;
-  line-height: 200% ;
-  background-color: var(--color-primario);
-  border-radius: 15px;
-  transition: border 0.3s;
-}
-
-/* Placeholder del área de texto */
-.texto::placeholder {
-  color: var(--color-secundario);
-}
-
-/* Estilos del área de texto cuando está en foco o activo */
-.texto:focus,
-.texto:active {
-  border: 5px solid var(--color-primario);
-  outline: none;
-}
-
-/* Estilo de error para el área de texto */
-.texto.error {
-  border: 5px solid red;
-}
-
-/* Contenedor para los términos */
-.terminos {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0px;
-  gap: 8px;
-  position: absolute;
-  width: 80%;
-  left: 12%;
-  top: 80%;
-}
-
-/* Estilos para el texto de términos */
-.terminos p {
-  font-family: var(--fuente-exo);
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 150%;
-  color: #495057;
-  opacity: 0.8;
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-}
-
-/* Contenedor para los botones */
-.botones {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 1% 0;
-  position: absolute;
-  width: 80%;
-  left: 12%;
-  top: 82%;
-}
-
-/* Botón de encriptar */
-.btn-encriptar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2%;
-  gap: 8px;
-  width: 25%;
-  background-color: var(--color-secundario);
-  border-radius: 24px;
-  font-family: var(--fuente-exo);
-  font-size: 28px;
-  line-height: 19px;
-  text-align: center;
-  color: #fff;
-}
-
-/* Icono del botón de encriptar */
-.icono-encriptar {
-  width: 25px;
-  height: 25px;
-  margin-right: 8px;
-}
-
-/* Botón de desencriptar */
-.btn-desencriptar {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 2%;
-  gap: 8px;
-  width: 25%;
-  background: #d8dfe8;
-  border: 1px solid var(--color-secundario);
-  border-radius: 24px;
-  font-family: var(--fuente-exo);
-  font-weight: 400;
-  font-size: 28px;
-  line-height: 19px;
-  text-align: center;
-  color: var(--color-secundario);
-}
-
-/* Estilos para los botones cuando se hace hover */
-.btn-desencriptar:hover,
-.btn-encriptar:hover {
-  margin: 0.3%;
-  width: 24.5%;
-  padding: 2.0%;
-}
-
-/* Contenedor para el resultado de la encriptación/desencriptación */
-.encriptado {
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  width: 30%;
-  height: 90%;
-  left: 60%;
-  top: 5%;
-  background: #fff;
-  box-shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
-  border-radius: 32px;
-  filter: drop-shadow(4px 4px 8px #999999);
-}
-
-/* Contenedor para el mensaje encriptado/desencriptado */
-.mensaje-encriptado {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1%;
-  gap: 16px;
-  position: absolute;
-  width: 100%;
-  top: 65%;
-  text-align: center;
-}
-
-/* Estilos para el título del mensaje */
-.mensaje-encriptado h3 {
-  width: 60%;
-  font-family: var(--fuente-exo);
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 120%;
-  text-align: center;
-  color: #343a40;
-}
-
-/* Estilos para el párrafo del mensaje */
-.mensaje-encriptado p {
-  width: 80%;
-  font-family: var(--fuente-exo);
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 100%;
-  text-align: center;
-  color: #495057;
-}
-
-/* Estilos para el área de texto del resultado */
-.mensaje-encriptado textarea {
-  width: 100%;
-  max-width: 400px; /* Ajusta el ancho máximo del textarea según tus necesidades */
-  height: 50px; /* Ajusta la altura según sea necesario */
-  margin-top: 10px; /* Espacio superior */
-  padding: 10px;
-  border: 1px solid #0a3871; /* Color del borde */
-  border-radius: 8px;
-  font-family: var(--fuente-exo); /* Fuente */
-  font-size: 16px;
-  color: #495057;
-  resize: none;
-  background-color: #f8f9fa;
-}
-
-/* Estilos para el botón de copiar */
-.mensaje-encriptado button {
-  padding: 10px 20px;
-  background-color: #0a3871; /* Color de fondo del botón */
-  color: #fff; /* Color del texto del botón */
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: var(--fuente-exo); /* Fuente */
-  font-size: 16px;
-}
-
-
-/* Estilos para el botón de copiar cuando se hace hover */
-.mensaje-encriptado button:hover {
-  background-color: #084298; /* Color de fondo del botón al hacer hover */
-}
-
-
-
-/* Imagen en el contenedor de encriptado */
-.encriptado img {
-  position: absolute;
-  width: 40%;
-  height: auto;
-  top: 15%;
-  filter: drop-shadow(4px 4px 8px #999999);
-}
-
-
-
-/* Diseño responsivo para pantallas más pequeñas */
-@media (max-width: 768px) {
-  .titulo_Header {
-    font-size: 24px;
-    line-height: 120%;
-    margin-top: 20px;
-  }
-
-  .container {
+header {
     display: flex;
-    flex-direction: row;
-  }
-
-  .encriptar {
-    width: 100%;
-  }
-
-  .texto {
-    width: 80%;
-    max-width: none; /* Ancho máximo del área de texto */
-    height: 200px; /* Ajusta la altura según sea necesario */
-    font-size: 1.5rem; /* Tamaño de la fuente */
-    margin-top: 1rem; /* Espaciado superior */
-  }
-
-  .terminos {
-    width: 90%;
-    left: 10%;
-    top: 67%;
-  }
-
-  .terminos p {
-    font-size: 16px;
-  }
-
-  .botones {
-    width: 90%;
-    max-width: 600px; /* Ancho máximo para los botones */
-    margin-top: 1rem; /* Espaciado superior */
-  }
-  
-  /* Estilos para los botones */
-.btn-encriptar,
-.btn-desencriptar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 20px; /* Ajuste de relleno */
-  width: 50%; /* Ancho inicial de los botones */
-  background-color: var(--color-secundario); /* Color de fondo */
-  border: none;
-  border-radius: 24px;
-  font-family: var(--fuente-exo); /* Fuente */
-  font-size: 1rem; /* Tamaño de la fuente */
-  color: #fff; /* Color del texto */
-  cursor: pointer;
-  transition: all 0.3s; /* Transición para suavizar el cambio */
-}
-  
-  .btn-encriptar:hover,
-  .btn-desencriptar:hover {
-    margin: 0.3%;
-    width: 47.5%;
-    padding: 1.8%;
-  }
-
-  .encriptado {
-    display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
-    position: relative;
-    width: 100%;
-    max-width: 600px; /* Ancho máximo ajustado según tus necesidades */
-    height: auto; /* Ajusta la altura según el contenido */
-    margin-top: 2rem; /* Espaciado superior */
-    background: #fff;
-    box-shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
-    border-radius: 32px;
-    overflow: hidden; /* Evita que el contenido se salga de los bordes */
-    filter: drop-shadow(4px 4px 8px #999999);
-  }
-  
-  /* Estilos para el mensaje encriptado dentro de encriptado */
-.mensaje-encriptado {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  gap: 1rem;
-  text-align: center;
-}
-  
-  /* Estilos para el título del mensaje */
-.mensaje-encriptado h2 {
-  font-size: 1.5rem; /* Tamaño del título */
-  font-weight: 700;
-  color: #343a40;
+    margin-bottom: 2rem;
 }
 
-  
-.mensaje-encriptado p {
-  font-size: 1rem; /* Tamaño del texto */
-  color: #495057;
-}
-  
-  .encriptado img {
-    width: 100%;
-    max-width: 800px; /* Ajusta el ancho máximo de la imagen según tus necesidades */
-    height: auto; /* Para mantener la proporción */
-    margin-top: 15%; /* Ajusta el margen superior según sea necesario */
-    filter: drop-shadow(4px 4px 8px #999999);
-  }
+.header-left {
+    display: flex;
+    align-items: center;
 }
 
 .header-image {
-  width: 100px; /* Ajusta el tamaño de la imagen según sea necesario */
-  height: auto; /* Para mantener la proporción */
-  animation: spin 10s linear infinite; /* Animación de rotación continua */
-  border-radius: 50%; /* Forma ovalada */
-  overflow: hidden; /* Para asegurar que la imagen siga la forma ovalada */
+    width: 50px;
+    height: 50px;
+    margin-right: 1rem;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.title {
+    font-size: 2rem;
+    color: var(--primary-color);
 }
 
-/* Estilos para enlaces clicables */
-a, a:visited {
-  text-decoration: none;
+main {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
 
-/* Estilos para enlaces en el contenido */
-content a, content a:visited {
-  text-decoration: none;
-  color: black;
-  font-family: Fruktur;
-  font-size: 24px;
+.input-section, .output-section {
+    flex: 1;
 }
 
-content a p:hover{
-  background-color: yellow;
+textarea {
+    width: 100%;
+    height: 200px;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--background-color);
+    box-shadow: 0 4px 6px var(--shadow-color);
+    resize: none;
+    font-family: inherit;
+    font-size: 1rem;
 }
 
-/* Ajustes para el footer */
+.info-text {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+.secondary-btn {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+#result-container {
+    background-color: var(--background-color);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+#result-image {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
+
+#result-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#result-description {
+    margin-bottom: 1rem;
+    
+}
+
+#result-text {
+    margin-bottom: 1rem;
+    height: 120px;
+}
+
 footer {
-  width: 100%;
-  background-color: #efefef;
-  text-align: center;
-  padding: 0.5rem 0;
-  position: relative; /* Ajuste para no tapar otros elementos */
-  clear: both; /* Asegura que el footer se sitúe debajo de otros elementos flotantes */
+    text-align: center;
 }
 
-/* Texto del footer */
-footer div p {
-  font-family: "Rubik One", sans-serif;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+.social-links {
+    margin-bottom: 0.5rem;
 }
 
-/* Efectos de texto del footer */
-footer div p span {
-  transition: background-color 1500ms ease, color 1500ms ease;
-  background-color: black;
-  color: white;
+.social-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin: 0 0.5rem;
+    transition: color 0.3s;
 }
 
-footer div p span:hover {
-  background-color: white;
-  color: black;
+.social-icon:hover {
+    color: var(--text-color);
 }
 
-/* Enlaces de imagen del footer */
-footer a.github,
-footer a.codepen {
-  transition: color 500ms ease;
-  font-size: 3em;
-  color: rgb(13, 38, 54);
-  padding: 10px;
-  display: inline-block;
+.copyright a {
+    color: var(--primary-color);
+    text-decoration: none;
 }
 
-footer a.codepen {
-  color: black;
+.theme-toggles {
+    display: flex;
+    gap: 1rem;
 }
 
-/* Efectos de hover en los enlaces de imagen */
-footer a.github:hover,
-footer a.codepen:hover {
-  color: darkgray;
+.theme-btn {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Footer responsivo */
-footer.mobile {
-  display: none;
+.theme-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
-
-@media screen and (max-width: 400px) {
-  footer.pc {
+#animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.5;
+    background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
     display: none;
-  }
-  footer.mobile {
-    display: block;
-  }
-  footer.mobile div p {
-    font-size: 15px;
-  }
+}
+
+.starry-bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: black;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    opacity: 0.8;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 @media (max-width: 768px) {
-  .texto {
-    width: 90%; /* Ajuste para pantallas más pequeñas */
-    font-size: 1.2rem; /* Reducción del tamaño de fuente */
-  }
-}
+    main {
+        flex-direction: column;
+    }
+    
+    .input-section, .output-section {
+        width: 100%;
+    }
 
-@media (max-width: 768px) {
-  .encriptado {
-    width: 90%; /* Ajuste para pantallas más pequeñas */
-  }
-}
+    #result-image {
+        width: 200px;
+        height: 200px;
+    }
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-@media (max-width: 768px) {
-  .btn-encriptar,
-  .btn-desencriptar {
-    width: 100%; /* Ancho completo para pantallas pequeñas */
-    margin-bottom: 1rem; /* Espacio entre botones */
-  }
+    .theme-toggles {
+        margin-top: 1rem;
+        align-self: flex-end;
+    }   
 }
-

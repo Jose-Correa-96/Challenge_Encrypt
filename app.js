@@ -1,99 +1,110 @@
-document.getElementById("texto").addEventListener("input", function() {
-  let inputValue = this.value;
-  let newValue = inputValue.replace(/[^a-z\s]/g, '');
-  if (inputValue !== newValue) {
-    this.value = newValue;
-    this.classList.add('error');
-    swal({
-      title: "Ooops!",
-      text: "Solo palabras en minúscula sin números ni símbolos",
-      icon: "warning", 
-      button: "OK",
-    });
-  } else {
-    this.classList.remove('error');
-  }
+const inputText = document.getElementById('input-text');
+const encryptBtn = document.getElementById('encrypt-btn');
+const decryptBtn = document.getElementById('decrypt-btn');
+const resultImage = document.getElementById('result-image');
+const resultTitle = document.getElementById('result-title');
+const resultDescription = document.getElementById('result-description');
+const resultText = document.getElementById('result-text');
+const copyBtn = document.getElementById('copy-btn');
+
+
+const encryptionMap = {
+    'e': 'enter',
+    'i': 'imes',
+    'a': 'ai',
+    'o': 'ober',
+    'u': 'ufat'
+};
+
+const themeToggle = document.getElementById('theme-toggle');
+const animatedBgToggle = document.getElementById('animated-bg-toggle');
+const animatedBackground = document.getElementById('animated-background');
+
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
+    const isDarkTheme = document.body.classList.contains('dark-theme');
+    themeToggle.innerHTML = isDarkTheme ? '<i class="fas fa-sun"></i> Light Mode' : '<i class="fas fa-moon"></i> Dark Mode';
 });
 
-function encriptar() {
-  let texto = document.getElementById("texto").value;
-  let tituloMensaje = document.getElementById("titulo-mensaje");
-  let parrafo = document.getElementById("parrafo");
-  let muñeco = document.getElementById("muñeco");
-  let resultado = document.getElementById("resultado");
-
-  let textoCifrado = texto
-    .replace(/e/gi, "enter")
-    .replace(/i/gi, "imes")
-    .replace(/a/gi, "ai")
-    .replace(/o/gi, "ober")
-    .replace(/u/gi, "ufat");
-
-  if (texto.length != 0) {
-    resultado.value = textoCifrado;
-    tituloMensaje.textContent = "Texto encriptado con éxito";
-    parrafo.textContent = "";
-    muñeco.src = "./img/encriptado.jpg";
-  } else {
-    muñeco.src = "./img/muñeco.png";
-    tituloMensaje.textContent = "Ningún mensaje fue encontrado";
-    parrafo.textContent = "Ingresa el texto que deseas encriptar o desencriptar";
-    swal({
-      title: "Ooops!",
-      text: "Debes ingresar un texto",
-      icon: "error", 
-      button: "OK",
-    });
-  }
-}
-
-
-function desencriptar() {
-  let texto = document.getElementById("texto").value;
-  let tituloMensaje = document.getElementById("titulo-mensaje");
-  let parrafo = document.getElementById("parrafo");
-  let muñeco = document.getElementById("muñeco");
-  let resultado = document.getElementById("resultado");
-
-  let textoCifrado = texto
-    .replace(/enter/gi, "e")
-    .replace(/imes/gi, "i")
-    .replace(/ai/gi, "a")
-    .replace(/ober/gi, "o")
-    .replace(/ufat/gi, "u");
-  
-    if (texto.length != 0) {
-      resultado.value = textoCifrado;
-      tituloMensaje.textContent = "Texto desencriptado con éxito";
-      parrafo.textContent = "";
-      muñeco.src = "./img/desencriptado.jpg";
+animatedBgToggle.addEventListener('click', () => {
+    animatedBackground.style.display = animatedBackground.style.display === 'none' ? 'block' : 'none';
+    animatedBgToggle.innerHTML = animatedBackground.style.display === 'none' ? '<i class="fas fa-paint-brush"></i> Animated BG' : '<i class="fas fa-times"></i> Remove BG';
+    
+    if (animatedBackground.style.display === 'block') {
+        createStars(100); // Número de estrellas
     } else {
-      muñeco.src = "./img/muñeco.png";
-      tituloMensaje.textContent = "Ningún mensaje fue encontrado";
-      parrafo.textContent = "Ingresa el texto que deseas encriptar o desencriptar";
-      swal({
-        title: "Ooops!",
-        text: "Debes ingresar un texto",
-        icon: "error", 
-        button: "OK",
-      });
+        animatedBackground.innerHTML = ''; // Limpia las estrellas si el fondo se desactiva
+    }
+});
+
+function createStars(numStars) {
+    for (let i = 0; i < numStars; i++) {
+        let star = document.createElement('div');
+        star.classList.add('star');
+        star.style.left = Math.random() * 100 + 'vw';
+        star.style.animationDuration = Math.random() * 5 + 5 + 's';
+        star.style.animationDelay = Math.random() * 5 + 's';
+        animatedBackground.appendChild(star);
     }
 }
-function copiarTexto() {
-  const resultado = document.getElementById("resultado");
-  const texto = document.getElementById("texto").value.trim(); // Obtener el contenido del textarea y quitar espacios en blanco al inicio y al final
 
-  if (texto.length === 0) {
-    swal({
-      title: "Oops!",
-      text: "No hay texto para copiar",
-      icon: "warning",
-      button: "OK",
-    });
-    return;
-  }
+const decryptionMap = Object.fromEntries(
+    Object.entries(encryptionMap).map(([key, value]) => [value, key])
+);
 
-  resultado.select();
-  document.execCommand("copy");
-  swal("¡Copiado!", "El texto ha sido copiado al portapapeles", "success");
+function validateInput(text) {
+    return /^[a-z\s]*$/.test(text);
 }
+
+function processText(text, map) {
+    return text.replace(new RegExp(Object.keys(map).join('|'), 'g'), match => map[match]);
+}
+
+function updateResult(title, description, text, imageSrc) {
+    resultTitle.textContent = title;
+    resultDescription.textContent = description;
+    resultText.value = text;
+    resultImage.src = imageSrc;
+    resultText.style.display = text ? 'block' : 'none';
+    copyBtn.style.display = text ? 'inline-block' : 'none';
+}
+
+function handleEncryptDecrypt(isEncrypt) {
+    const text = inputText.value.trim();
+    
+    if (!text) {
+        swal('Ups!', 'Por favor ingresa algún texto', 'warning');
+        return;
+    }
+    
+    if (!validateInput(text)) {
+        swal('Texto Invalido', 'Utilice únicamente letras minúsculas y sin acentos.', 'error');
+        return;
+    }
+    
+    const processedText = isEncrypt ? processText(text, encryptionMap) : processText(text, decryptionMap);
+    const action = isEncrypt ? 'cifrado' : 'descifrado';
+    const image = isEncrypt ? 'desencriptado' : 'encriptado';
+    
+    updateResult(
+        `Texto ${action} exitosamente`,
+        '',
+        processedText,
+        `img/${image}.jpg`
+    );
+}
+
+encryptBtn.addEventListener('click', () => handleEncryptDecrypt(true));
+decryptBtn.addEventListener('click', () => handleEncryptDecrypt(false));
+
+copyBtn.addEventListener('click', () => {
+    resultText.select();
+    document.execCommand('copy');
+    swal('¡Copiado!', 'El texto ha sido copiado a tu portapapeles.', 'success');    
+});
+
+inputText.addEventListener('input', () => {
+    if (inputText.value.trim() === '') {
+        updateResult('No se encontró ningún mensaje', 'Introduzca un texto para cifrar o descifrar', '', 'img/waiting.svg');
+    }
+});

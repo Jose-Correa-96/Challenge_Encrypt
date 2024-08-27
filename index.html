@@ -1,72 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Encriptador de Texto</title>
-  <link rel="shortcut icon" href="img/roj.jpg" type="image/x-icon" />
-  <link rel="stylesheet" href="styles.css" />
-  <link href="/website/css/uicons-outline-rounded.css" rel="stylesheet">
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptador de Textos</title>
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
-  
-  <div class="container">
-    <header>
-      <img src="img/alura.jpg" alt="icono alura" class="header-image">
-    </header>
-    <h1 class="titulo_Header">Listo para Encriptar</h1>
-    <div class="encriptar">
-      <textarea name="texto" class="texto" id="texto" cols="30" rows="10" placeholder="Ingresa el texto aquí"></textarea>
-      <div class="terminos">
-        <p>Solo letras minúsculas y sin acentos.</p>
-      </div>
-      <div class="botones">
-        <button class="btn-encriptar" type="button" onclick="encriptar()">
-          <img src="img/carga.gif" class="icono-encriptar" alt="icono de contraseña">
-          Encriptar
-        </button>
-        <input type="button" class="btn-desencriptar" value="Desencriptar" onclick="desencriptar()"/>
-      </div>
+    <div class="container">
+        <header>
+            <img src="img/alura.jpg" alt="Logo" class="header-image">
+            <h1 class="title">Encriptador de Textos</h1>
+            <div class="theme-toggles">
+                <button id="theme-toggle" class="btn theme-btn">
+                    <i class="fas fa-moon"></i> Dark Mode
+                </button>
+                <button id="animated-bg-toggle" class="btn theme-btn">
+                    <i class="fas fa-paint-brush"></i> Animated BG
+                </button>
+            
+                <div id="animatedBackground" class="starry-bg" style="display: none;"></div>
+            </div>
+        </header>
+        
+        <main>
+            <section class="input-section">
+                <textarea id="input-text" placeholder="Introduce tu texto aquí"></textarea>
+                <p class="info-text"><i class="fas fa-info-circle"></i> Utilice únicamente letras minúsculas sin acentos.</p>
+                <div class="button-group">
+                    <button id="encrypt-btn" class="btn primary-btn">
+                        <i class="fas fa-lock"></i> Encrypt
+                    </button>
+                    <button id="decrypt-btn" class="btn secondary-btn">
+                        <i class="fas fa-unlock"></i> Decrypt
+                    </button>
+                </div>
+            </section>
+            
+            <section class="output-section">
+                <div id="result-container">
+                    <img src="img/muñeco.png" alt="Waiting for input" id="result-image">
+                    <h2 id="result-title">No se encontró ningún mensaje</h2>
+                    <p id="result-description">Introduzca un texto para cifrar o descifrar</p>
+                    <textarea id="result-text" readonly></textarea>
+                    <button id="copy-btn" class="btn primary-btn">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <div class="social-links">
+                <a href="https://github.com/Jose-Correa-96" target="_blank" class="social-icon">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://codepen.io/Jose-Correa-96" target="_blank" class="social-icon">
+                    <i class="fab fa-codepen"></i>
+                </a>
+            </div>
+            <p class="copyright">
+                Made by <a href="https://www.linkedin.com/in/jose-andres-correa-palomino-ba9138191/" target="_blank">Jose Correa</a>
+            </p>
+        </footer>
     </div>
-    <div class="encriptado">
-      <img src="img/muñeco.png" alt="" id="muñeco" />
-      <div class="mensaje-encriptado" id="mensaje-encriptado">
-        <h3 id="titulo-mensaje">Ningún mensaje fue encontrado</h3>
-        <p id="parrafo">Ingresa el texto que deseas encriptar o desencriptar</p>
-        <textarea id="resultado" readonly></textarea>
-        <button id="btn-copiar" onclick="copiarTexto()">Copiar</button>
-      </div>
-    </div>
-  </div>
-
-  <footer class="pc">
-    <a href="https://github.com/Jose-Correa-96" class="github">
-      <ion-icon class="fa fa-github fa-3x" aria-hidden="true" name="logo-github"></ion-icon>
-    </a>
-    <a href="https://codepen.io/Jose-Correa-96" class="codepen">
-      <ion-icon class="fa fa-github fa-3x" aria-hidden="true" name="logo-codepen"></ion-icon>
-    </a>
-    <div class="copyright">
-      <p> Made by <a href="https://www.linkedin.com/in/jose-andres-correa-palomino-ba9138191/" target="_blank"><span>&nbsp;Jose Correa&nbsp;</span></a></p>
-    </div>
-  </footer>
-  <footer class="mobile">
-    <a href="https://github.com/Jose-Correa-96" class="github">
-      <ion-icon class="fa fa-github fa-3x" aria-hidden="true" name="logo-github"></ion-icon>
-    </a>
-    <a href="https://codepen.io/Jose-Correa-96" class="codepen">
-      <ion-icon class="fa fa-github fa-3x" aria-hidden="true" name="logo-codepen"></ion-icon>
-    </a>
-    <div class="copyright">
-      <p> Made by <span>&nbsp;Jose Correa&nbsp;</span></p>
-    </div>
-  </footer>
-
-  
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  <script src="app.js"></script>
+    
+    <script src="app.js"></script>
 </body>
 </html>
