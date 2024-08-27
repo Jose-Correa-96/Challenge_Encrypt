@@ -7,7 +7,6 @@ const resultDescription = document.getElementById('result-description');
 const resultText = document.getElementById('result-text');
 const copyBtn = document.getElementById('copy-btn');
 
-
 const encryptionMap = {
     'e': 'enter',
     'i': 'imes',
@@ -31,9 +30,9 @@ animatedBgToggle.addEventListener('click', () => {
     animatedBgToggle.innerHTML = animatedBackground.style.display === 'none' ? '<i class="fas fa-paint-brush"></i> Animated BG' : '<i class="fas fa-times"></i> Remove BG';
     
     if (animatedBackground.style.display === 'block') {
-        createStars(100); // Número de estrellas
+        createStars(100);
     } else {
-        animatedBackground.innerHTML = ''; // Limpia las estrellas si el fondo se desactiva
+        animatedBackground.innerHTML = '';
     }
 });
 
@@ -66,7 +65,17 @@ function updateResult(title, description, text, imageSrc) {
     resultText.value = text;
     resultImage.src = imageSrc;
     resultText.style.display = text ? 'block' : 'none';
-    copyBtn.style.display = text ? 'inline-block' : 'none';
+    
+    // Activate or deactivate the copy button based on whether there's text to copy
+    if (text) {
+        copyBtn.style.display = 'inline-block';
+        copyBtn.disabled = false;
+        copyBtn.classList.remove('disabled-btn');
+    } else {
+        copyBtn.style.display = 'none';
+        copyBtn.disabled = true;
+        copyBtn.classList.add('disabled-btn');
+    }
 }
 
 function handleEncryptDecrypt(isEncrypt) {
@@ -98,13 +107,18 @@ encryptBtn.addEventListener('click', () => handleEncryptDecrypt(true));
 decryptBtn.addEventListener('click', () => handleEncryptDecrypt(false));
 
 copyBtn.addEventListener('click', () => {
-    resultText.select();
-    document.execCommand('copy');
-    swal('¡Copiado!', 'El texto ha sido copiado a tu portapapeles.', 'success');    
+    if (!copyBtn.disabled) {
+        resultText.select();
+        document.execCommand('copy');
+        swal('¡Copiado!', 'El texto ha sido copiado a tu portapapeles.', 'success');
+    }
 });
 
 inputText.addEventListener('input', () => {
     if (inputText.value.trim() === '') {
-        updateResult('No se encontró ningún mensaje', 'Introduzca un texto para cifrar o descifrar', '', 'img/waiting.svg');
+        updateResult('No se encontró ningún mensaje', 'Introduzca un texto para cifrar o descifrar', '', 'img/espera.png');
     }
 });
+
+// Initial state: copy button is disabled
+updateResult('No se encontró ningún mensaje', 'Introduzca un texto para cifrar o descifrar', '', 'img/espera.png   ');

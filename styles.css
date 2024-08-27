@@ -104,6 +104,11 @@ textarea {
     transition: background-color 0.3s, transform 0.1s;
 }
 
+.disabled-btn {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 .primary-btn {
     background-color: var(--primary-color);
     color: var(--background-color);
